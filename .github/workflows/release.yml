@@ -1,0 +1,32 @@
+name: Build Release Executable
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-upload:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        enable-cache: true
+
+    - name: Install dependencies
+      run: uv sync
+
+    - name: Build executable
+      run: uv run pyinstaller --noconfirm --noconsole --onefile --add-data "scripts;scripts" --name "win-helper" main.py
+
+    - name: Upload Release Asset
+      uses: softprops/action-gh-release@v2
+      with:
+        files: dist/win-helper.exe
