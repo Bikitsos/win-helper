@@ -27,16 +27,16 @@ jobs:
       run: uv sync
 
     - name: Build executable
-      run: uv run pArtifact (for manual runs)
+      run: uv run pyinstaller --noconfirm --noconsole --onefile --add-data "scripts;scripts" --add-data "icon;icon" --icon "icon/app.ico" --name "win-helper" main.py
+
+    - name: Upload Artifact (for manual runs)
       uses: actions/upload-artifact@v4
       with:
         name: win-helper-exe
         path: dist/win-helper.exe
 
     - name: Upload Release Asset
-      if: github.event_name == 'release'noconfirm --noconsole --onefile --add-data "scripts;scripts" --add-data "icon;icon" --icon "icon/app.ico" --name "win-helper" main.py
-
-    - name: Upload Release Asset
+      if: github.event_name == 'release'
       uses: softprops/action-gh-release@v2
       with:
         files: dist/win-helper.exe
