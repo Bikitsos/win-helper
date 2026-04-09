@@ -24,6 +24,8 @@ from PySide6.QtWidgets import (
 )
 
 
+APP_VERSION = "1.0.0"
+
 SCRIPT_DEFINITIONS = (
     (
         "Install VC Redistributables",
@@ -67,7 +69,7 @@ SCRIPT_DEFINITIONS = (
 class ScriptRunnerWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle("Windows Helper")
+        self.setWindowTitle(f"Windows Helper v{APP_VERSION}")
         self.resize(780, 560)
         self.setMinimumSize(720, 520)
 
@@ -202,7 +204,7 @@ class ScriptRunnerWindow(QMainWindow):
         layout.setContentsMargins(12, 10, 12, 10)
         layout.setSpacing(4)
 
-        title = QLabel("Windows Helper")
+        title = QLabel(f"Windows Helper v{APP_VERSION}")
         title.setObjectName("heroTitle")
 
         subtitle = QLabel(
