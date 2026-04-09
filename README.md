@@ -35,7 +35,7 @@ This tool provides a graphical user interface to run predefined Windows administ
 The application can be compiled into a single standalone executable using PyInstaller.
 
 ```bash
-uv run pyinstaller --noconfirm --noconsole --onefile --add-data "scripts;scripts" --name "win-helper" main.py
+uv run pyinstaller --noconfirm --noconsole --onefile --add-data "scripts;scripts" --add-data "icon;icon" --icon "icon/app.ico" --name "win-helper" main.py
 ```
 
 The resulting executable will be available at `dist/win-helper.exe`.

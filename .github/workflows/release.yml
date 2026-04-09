@@ -24,7 +24,7 @@ jobs:
       run: uv sync
 
     - name: Build executable
-      run: uv run pyinstaller --noconfirm --noconsole --onefile --add-data "scripts;scripts" --name "win-helper" main.py
+      run: uv run pyinstaller --noconfirm --noconsole --onefile --add-data "scripts;scripts" --add-data "icon;icon" --icon "icon/app.ico" --name "win-helper" main.py
 
     - name: Upload Release Asset
       uses: softprops/action-gh-release@v2

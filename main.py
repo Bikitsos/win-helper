@@ -8,7 +8,7 @@ from pathlib import Path
 from subprocess import list2cmdline
 
 from PySide6.QtCore import QProcess, Qt
-from PySide6.QtGui import QFont
+from PySide6.QtGui import QFont, QIcon
 from PySide6.QtWidgets import (
     QApplication,
     QFrame,
@@ -77,6 +77,10 @@ class ScriptRunnerWindow(QMainWindow):
             self.project_root = Path(sys._MEIPASS)
         else:
             self.project_root = Path(__file__).resolve().parent
+            
+        icon_path = self.project_root / "icon" / "app.ico"
+        if icon_path.exists():
+            self.setWindowIcon(QIcon(str(icon_path)))
             
         self.scripts_dir = self.project_root / "scripts"
         self.process: QProcess | None = None
